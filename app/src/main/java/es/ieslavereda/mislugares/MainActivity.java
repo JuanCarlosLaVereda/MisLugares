@@ -1,5 +1,6 @@
 package es.ieslavereda.mislugares;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -12,12 +13,15 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import es.ieslavereda.mislugares.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private Button acercaDeButton;
+    private Button salirButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        acercaDeButton = findViewById(R.id.acercaDe);
+        salirButton = findViewById(R.id.salir);
+        salirButton.setOnClickListener(view -> finish());
+        acercaDeButton.setOnClickListener(view -> lanzaAcercaDe(view));
     }
 
     @Override
@@ -60,5 +69,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void lanzaAcercaDe(View view){
+        Intent intent = new Intent(this, AcercaDeActivity.class);
+        startActivity(intent);
     }
 }
